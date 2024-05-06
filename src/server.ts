@@ -1,14 +1,20 @@
+import { env } from "./env"
+import { requestIntercepter } from "./middlewres/request-intercepter"
+import siteRoutes from "./routes/site"
+
 import express from "express"
 import cors from "cors"
 import https from "https"
 import http from "http"
-import { env } from "./env"
 
 const app = express()
 
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+app.all("*", requestIntercepter)
+app.use("/", siteRoutes )
 
 const runServer = (port: number, server:http.Server) =>{
     server.listen(port, () =>{

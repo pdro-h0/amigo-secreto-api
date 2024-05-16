@@ -18,7 +18,7 @@ export const auth: RequestHandler = (req, res) => {
         return res.status(403).json({ error: "Acesso negado" })
     }
 
-    return res.json({ token: authService.createToken() })
+    return res.json({ token: authService.createToken(password) })
   } catch (error) {
     return res.status(400).json({ error });
   }

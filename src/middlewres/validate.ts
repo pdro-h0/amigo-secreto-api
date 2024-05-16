@@ -9,8 +9,9 @@ export const validate: RequestHandler = async (req, res, next) => {
   }
 
   const token = req.headers.authorization.split(" ")[1];
+  const password = req.headers.authorization.split(" ")[1].slice(7);
 
-  if (!authService.validateToken(token)) {
+  if (!authService.validateToken(token, password)) {
     return res.status(403).json({ error: "Acesso negado" });
   }
 

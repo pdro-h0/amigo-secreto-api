@@ -3,12 +3,21 @@ import { db } from "../../lib/prisma";
 import { EventRepository } from "../event-repository";
 
 export class PrismaEventRepository implements EventRepository {
+  async delete(id: number) {
+    const event = db.event.delete({
+      where: {
+        id,
+      },
+    });
+
+    return event;
+  }
   async updateEvent(id: number, data: Prisma.EventUncheckedUpdateInput) {
     const event = await db.event.update({
       where: {
         id,
       },
-      data
+      data,
     });
 
     return event;

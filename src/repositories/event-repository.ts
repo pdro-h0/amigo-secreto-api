@@ -8,4 +8,5 @@ export interface EventRepository {
     id: number,
     data: Prisma.EventUncheckedUpdateInput
   ): Promise<Event>;
+  delete(id: number): Promise<Event>;
 }

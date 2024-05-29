@@ -3,6 +3,12 @@ import { Event, Prisma } from "@prisma/client";
 
 export class InMemoryEventsRepository implements EventRepository {
   public events: Event[] = [];
+
+  async delete(id: number) {
+    const events = await this.events.filter((event) => event.id !== id);
+
+    return events;
+  }
   async updateEvent(id: number, data: Prisma.EventUncheckedUpdateInput) {
     const event = await this.events.find((event) => event.id === id);
 

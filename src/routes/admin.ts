@@ -8,6 +8,8 @@ import { getOne } from "../controllers/event/get-one";
 import { addEvent } from "../controllers/event/add-event";
 import { update } from "../controllers/event/update";
 import { remove } from "../controllers/event/delete";
+import { getOneGroup } from "../controllers/group/get-one-group";
+import { getAllGroups } from "../controllers/group/get-all-groups";
 
 const router = Router();
 
@@ -21,5 +23,8 @@ router.get("/events/:id", validate, getOne);
 router.post("/events", validate, addEvent);
 router.put("/events/:id", validate, update);
 router.delete("/events/:id", validate, remove);
+
+router.get("/events/:eventId/groups", validate, getAllGroups);
+router.get("/events/:eventId/groups/:id", validate, getOneGroup);
 
 export default router;

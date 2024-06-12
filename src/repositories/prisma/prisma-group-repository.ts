@@ -3,6 +3,15 @@ import { db } from "../../lib/prisma";
 import { GroupRepository } from "../group-repository";
 
 export class PrismaGroupRepostitory implements GroupRepository {
+  async delete(eventId: number, id: number) {
+    await db.eventGroup.delete({
+      where: {
+        id,
+        eventId,
+      },
+    });
+  }
+  
   async updateGroup(
     eventId: number,
     id: number,

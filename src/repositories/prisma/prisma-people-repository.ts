@@ -1,7 +1,16 @@
+import { Prisma } from "@prisma/client";
 import { db } from "../../lib/prisma";
 import { PeopleRepository } from "../people-repository";
 
 export class PrismaPeopleRepostiry implements PeopleRepository {
+  async addPerson(data: Prisma.EventPeopleUncheckedCreateInput) {
+    const newPerson = await db.eventPeople.create({
+      data
+    });
+
+    return newPerson;
+  }
+
   async getPerson(
     eventId: number,
     groupId?: number | undefined,
@@ -9,7 +18,7 @@ export class PrismaPeopleRepostiry implements PeopleRepository {
     cpf?: string | undefined
   ) {
     if (!id && !cpf) return null;
-    
+
     const person = await db.eventPeople.findUnique({
       where: {
         id,
@@ -23,6 +32,7 @@ export class PrismaPeopleRepostiry implements PeopleRepository {
 
     return person;
   }
+
   async getAll(eventId: number, groupId: number) {
     const people = await db.eventPeople.findMany({
       where: {

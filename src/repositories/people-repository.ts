@@ -1,4 +1,4 @@
-import { EventPeople } from "@prisma/client";
+import { EventPeople, Prisma } from "@prisma/client";
 
 export interface PeopleRepository {
   getAll(eventId: number, groupId: number): Promise<EventPeople[] | null>;
@@ -8,4 +8,5 @@ export interface PeopleRepository {
     id?: number,
     cpf?: string
   ): Promise<EventPeople | null>;
+  addPerson(data: Prisma.EventPeopleUncheckedCreateInput): Promise<EventPeople>;
 }

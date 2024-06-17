@@ -3,9 +3,28 @@ import { db } from "../../lib/prisma";
 import { PeopleRepository } from "../people-repository";
 
 export class PrismaPeopleRepostiry implements PeopleRepository {
+  async updatePerson(
+    data: Prisma.EventPeopleUncheckedUpdateManyInput,
+    eventId: number,
+    groupId?: number | undefined,
+    id?: number | undefined
+  ) {
+    const updatedPerson = await db.eventPeople.updateMany({
+      where: {
+        eventId,
+        groupId,
+        id,
+      },
+      data
+    });
+
+    if(!updatedPerson) return null
+
+    return updatedPerson
+  }
   async addPerson(data: Prisma.EventPeopleUncheckedCreateInput) {
     const newPerson = await db.eventPeople.create({
-      data
+      data,
     });
 
     return newPerson;

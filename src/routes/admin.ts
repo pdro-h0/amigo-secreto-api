@@ -16,6 +16,7 @@ import { deleteGroup } from "../controllers/group/delete-group";
 import { getAllPeople } from "../controllers/people/get-all-people";
 import { getPerson } from "../controllers/people/get-person";
 import { addPerson } from "../controllers/people/add-person";
+import { updatePerson } from "../controllers/people/update-person";
 
 const router = Router();
 
@@ -39,6 +40,7 @@ router.delete("/events/:eventId/groups/:id", validate, deleteGroup);
 router.get("/events/:eventId/groups/:groupId/people", validate, getAllPeople);
 router.get("/events/:eventId/groups/:groupId/people/:id", validate, getPerson);
 router.post("/events/:eventId/groups/:groupId/people", validate, addPerson);
+router.put("/events/:eventId/groups/:groupId/people/:id", validate, updatePerson);
 
 
 export default router;

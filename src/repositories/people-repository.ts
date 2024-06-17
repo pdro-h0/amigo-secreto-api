@@ -9,4 +9,10 @@ export interface PeopleRepository {
     cpf?: string
   ): Promise<EventPeople | null>;
   addPerson(data: Prisma.EventPeopleUncheckedCreateInput): Promise<EventPeople>;
+  updatePerson(
+    data: Prisma.EventPeopleUncheckedUpdateManyInput,
+    eventId: number,
+    groupId?: number,
+    id?: number
+  ): Promise<Prisma.BatchPayload | null>;
 }

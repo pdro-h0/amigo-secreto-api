@@ -3,6 +3,15 @@ import { db } from "../../lib/prisma";
 import { PeopleRepository } from "../people-repository";
 
 export class PrismaPeopleRepostiry implements PeopleRepository {
+  async remove(id: number, eventId?: number, groupId?: number) {
+    await db.eventPeople.delete({
+      where: {
+        id,
+        eventId,
+        groupId,
+      },
+    });
+  }
   async updatePerson(
     data: Prisma.EventPeopleUncheckedUpdateManyInput,
     eventId: number,
@@ -15,12 +24,12 @@ export class PrismaPeopleRepostiry implements PeopleRepository {
         groupId,
         id,
       },
-      data
+      data,
     });
 
-    if(!updatedPerson) return null
+    if (!updatedPerson) return null;
 
-    return updatedPerson
+    return updatedPerson;
   }
   async addPerson(data: Prisma.EventPeopleUncheckedCreateInput) {
     const newPerson = await db.eventPeople.create({

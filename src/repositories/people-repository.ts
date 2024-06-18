@@ -15,4 +15,5 @@ export interface PeopleRepository {
     groupId?: number,
     id?: number
   ): Promise<Prisma.BatchPayload | null>;
+  remove(id: number, eventId?: number, groupId?: number): Promise<void>
 }

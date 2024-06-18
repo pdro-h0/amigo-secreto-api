@@ -17,6 +17,7 @@ import { getAllPeople } from "../controllers/people/get-all-people";
 import { getPerson } from "../controllers/people/get-person";
 import { addPerson } from "../controllers/people/add-person";
 import { updatePerson } from "../controllers/people/update-person";
+import { removePerson } from "../controllers/people/remove-person";
 
 const router = Router();
 
@@ -41,6 +42,7 @@ router.get("/events/:eventId/groups/:groupId/people", validate, getAllPeople);
 router.get("/events/:eventId/groups/:groupId/people/:id", validate, getPerson);
 router.post("/events/:eventId/groups/:groupId/people", validate, addPerson);
 router.put("/events/:eventId/groups/:groupId/people/:id", validate, updatePerson);
+router.delete("/events/:eventId/groups/:groupId/people/:id", validate, removePerson);
 
 
 export default router;

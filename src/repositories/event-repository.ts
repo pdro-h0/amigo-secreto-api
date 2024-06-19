@@ -9,4 +9,5 @@ export interface EventRepository {
     data: Prisma.EventUncheckedUpdateInput
   ): Promise<Event>;
   delete(id: number): Promise<Event | Event[]>;
+  doesMatches(id: number): Promise<boolean>
 }

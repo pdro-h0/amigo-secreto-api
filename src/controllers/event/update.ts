@@ -1,6 +1,8 @@
 import { RequestHandler } from "express";
 import z from "zod";
 import { makeUpdateEvent } from "../../services/factories/make-update-event-factories";
+import { makeUpdatePersonFactories } from "../../services/factories/people/make-update-person-factories";
+import { makeDoesMatchesFactories } from "../../services/factories/event/make-does-matches-factories";
 
 export const update: RequestHandler = async (req, res) => {
   const updateEventParamsSchema = z.object({
@@ -21,16 +23,21 @@ export const update: RequestHandler = async (req, res) => {
   );
 
   const updateEventService = makeUpdateEvent()
+  // const updatePersonService = makeUpdatePersonFactories()
+  // const doesMatchesService = makeDoesMatchesFactories()
 
   const { event } = await updateEventService.execute(id, data);
 
-  if(event){
-    if((await event).status){
-        //TODO FAZER O SORTEIO
-    } else {
-        //TODO LIMPAR O SORTEIO
-    }
-  }
+  // if(event){
+  //   if(event.status){
+  //       const result = await doesMatchesService.execute(id)
+  //       if(!result){
+  //         return res.json({ error: "Grupos impossíveis de sortear" })
+  //       }
+  //   } else {
+  //       await updatePersonService.execute({matched: ""}, id)
+  //   }
+  // }
 
   return res.json({ event: event })
 };

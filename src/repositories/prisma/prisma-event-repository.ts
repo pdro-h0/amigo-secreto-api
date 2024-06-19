@@ -3,6 +3,9 @@ import { db } from "../../lib/prisma";
 import { EventRepository } from "../event-repository";
 
 export class PrismaEventRepository implements EventRepository {
+  doesMatches(id: number): Promise<boolean> {
+    throw new Error("Method not implemented.");
+  }
   async delete(id: number) {
     const event = db.event.delete({
       where: {

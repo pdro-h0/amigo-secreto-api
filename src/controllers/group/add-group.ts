@@ -16,10 +16,7 @@ export const addGroup:RequestHandler = async (req, res) =>{
 
     const addGroupService = makeAddGroupFactories()
 
-    const newGroup = await addGroupService.execute({
-        name,
-        eventId
-    });
+    const newGroup = await addGroupService.execute(name, eventId);
 
-    return res.status(201).json({group: newGroup})
+    return res.status(201).json({newGroup})
 }

@@ -28,9 +28,12 @@ export class PrismaGroupRepostitory implements GroupRepository {
     return updatedGroup;
   }
 
-  async addGroup(data: Prisma.EventGroupUncheckedCreateInput) {
+  async addGroup(name: string, eventId:number) {
     const newGroup = await db.eventGroup.create({
-      data,
+      data: {
+        name,
+        eventId
+      },
     });
 
     return newGroup;

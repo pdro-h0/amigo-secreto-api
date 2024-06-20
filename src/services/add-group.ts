@@ -4,8 +4,8 @@ import { GroupRepository } from "../repositories/group-repository";
 export class AddGroupService {
     constructor(private groupRepository: GroupRepository){}
 
-    async execute(data: Prisma.EventGroupUncheckedCreateInput){
-        const newGroup = await this.groupRepository.addGroup(data)
+    async execute(name: string, eventId: number){
+        const newGroup = await this.groupRepository.addGroup(name, eventId)
 
         return newGroup
     }

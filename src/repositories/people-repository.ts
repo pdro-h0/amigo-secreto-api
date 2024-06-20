@@ -1,7 +1,7 @@
 import { EventPeople, Prisma } from "@prisma/client";
 
 export interface PeopleRepository {
-  getAll(eventId: number, groupId: number): Promise<EventPeople[] | null>;
+  getAll(eventId: number, groupId?: number): Promise<EventPeople[] | null>;
   getPerson(
     eventId: number,
     groupId?: number,

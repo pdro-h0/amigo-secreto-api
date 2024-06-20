@@ -23,21 +23,21 @@ export const update: RequestHandler = async (req, res) => {
   );
 
   const updateEventService = makeUpdateEvent()
-  // const updatePersonService = makeUpdatePersonFactories()
-  // const doesMatchesService = makeDoesMatchesFactories()
+  const updatePersonService = makeUpdatePersonFactories()
+  const doesMatchesService = makeDoesMatchesFactories()
 
   const { event } = await updateEventService.execute(id, data);
 
-  // if(event){
-  //   if(event.status){
-  //       const result = await doesMatchesService.execute(id)
-  //       if(!result){
-  //         return res.json({ error: "Grupos impossíveis de sortear" })
-  //       }
-  //   } else {
-  //       await updatePersonService.execute({matched: ""}, id)
-  //   }
-  // }
+  if(event){
+    if(event.status){
+        const result = await doesMatchesService.execute(id)
+        if(!result){
+          return res.json({ error: "Grupos impossíveis de sortear" })
+        }
+    } else {
+        await updatePersonService.execute({matched: ""}, id)
+    }
+  }
 
-  return res.json({ event: event })
+  return res.json({ event })
 };

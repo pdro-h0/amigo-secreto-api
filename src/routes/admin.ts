@@ -33,9 +33,9 @@ router.put("/events/:id", validate, update);
 router.delete("/events/:id", validate, remove);
 
 router.get("/events/:eventId/groups", validate, getAllGroups);
+router.post("/events/:eventId/groups", validate, addGroup);
 router.get("/events/:eventId/groups/:id", validate, getOneGroup);
 router.put("/events/:eventId/groups/:id", validate, updateGroup);
-router.post("/events/:eventId/groups", validate, addGroup);
 router.delete("/events/:eventId/groups/:id", validate, deleteGroup);
 
 router.get("/events/:eventId/groups/:groupId/people", validate, getAllPeople);

@@ -46,8 +46,6 @@ export class PrismaGroupRepostitory implements GroupRepository {
       },
     });
 
-    console.log(group);
-
     return group;
   }
   async getAll(eventId: number) {

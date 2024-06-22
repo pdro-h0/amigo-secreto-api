@@ -10,7 +10,8 @@ export class PrismaEventRepository implements EventRepository {
       }
     })
 
-    return eventItem!.grouped
+    if(!eventItem) throw new Error("Algo deu errado")
+    return eventItem.grouped
   }
 
   async delete(id: number) {

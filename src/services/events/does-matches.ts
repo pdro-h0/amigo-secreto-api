@@ -1,6 +1,7 @@
 import { EventRepository } from "../../repositories/event-repository";
 import { GroupRepository } from "../../repositories/group-repository";
 import { PeopleRepository } from "../../repositories/people-repository";
+import { encryptMatch } from "../../utils/match";
 
 interface ISortedList {
   id: number;
@@ -79,18 +80,19 @@ export class DoesMatchesService {
         console.log(`MAX ATTEMPS: ${maxAttemps}`);
         console.log("SORTED LIST: ", sortedList);
 
-        // if (attemps < maxAttemps) {
-        //   for (let i in sortedList) {
-        //     await this.peopleRepository.updatePerson(
-        //       {
-        //         matched: "", //TODO: Criar encryptMatch
-        //       },
-        //       id,
-        //       undefined,
-        //       sortedList[i].id
-        //     );
-        //   }
-        // }
+        if (attemps < maxAttemps) {
+          for (let i in sortedList) {
+            await this.peopleRepository.updatePerson(
+              {
+                matched: encryptMatch(sortedList[i].match),
+              },
+              id,
+              undefined,
+              sortedList[i].id
+            );
+          }
+          return true
+        }
       }
     }
     return false;

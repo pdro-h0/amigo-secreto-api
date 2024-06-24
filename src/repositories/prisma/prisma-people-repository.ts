@@ -47,7 +47,7 @@ export class PrismaPeopleRepostiry implements PeopleRepository {
   ) {
     if (!id && !cpf) return null;
 
-    const person = await db.eventPeople.findUnique({
+    const person = await db.eventPeople.findFirst({
       where: {
         id,
         cpf,

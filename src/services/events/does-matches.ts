@@ -76,10 +76,6 @@ export class DoesMatchesService {
           }
         }
 
-        console.log(`ATTEMPS: ${attemps}`);
-        console.log(`MAX ATTEMPS: ${maxAttemps}`);
-        console.log("SORTED LIST: ", sortedList);
-
         if (attemps < maxAttemps) {
           for (let i in sortedList) {
             await this.peopleRepository.updatePerson(

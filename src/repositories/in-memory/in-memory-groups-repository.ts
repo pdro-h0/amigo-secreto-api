@@ -4,12 +4,17 @@ import { GroupRepository } from "../group-repository";
 export class InMemoryGroupsRepository implements GroupRepository {
   public groups: EventGroup[] = [];
 
-  async addGroup(data: Prisma.EventGroupUncheckedCreateInput) {
+  async delete(eventId: number, id: number) {
+    this.groups.filter(
+      (group) => group.id === group.id && group.eventId === eventId
+    );
+  }
+
+  async addGroup(name: string, eventId: number, id?: number) {
     const createdGroup = {
-      id: data.id ?? Math.floor(Math.random() * 10),
-      name: data.name,
-      eventId: data.eventId ?? Math.floor(Math.random() * 10),
-      eventPeople: data.eventPeople ?? null,
+      id: id ?? Math.floor(Math.random() * 10),
+      name: name,
+      eventId: eventId ?? Math.floor(Math.random() * 10),
     };
 
     this.groups.push(createdGroup);

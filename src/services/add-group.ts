@@ -1,4 +1,3 @@
-import { Prisma } from "@prisma/client";
 import { GroupRepository } from "../repositories/group-repository";
 
 export class AddGroupService {

@@ -4,6 +4,14 @@ import { Event, Prisma } from "@prisma/client";
 export class InMemoryEventsRepository implements EventRepository {
   public events: Event[] = [];
 
+  async doesMatches(id: number) {
+    const event = this.events.find((event) => event.id === id)
+
+    if(!event) throw new Error()
+
+    return event.grouped
+  }
+
   async delete(id: number) {
     const events = await this.events.filter((event) => event.id !== id);
 

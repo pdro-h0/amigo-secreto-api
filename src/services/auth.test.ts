@@ -7,7 +7,7 @@ let inMemoryUserRepository: InMemoryUserRepository;
 let authService: AuthService;
 
 describe("AUTH SERVICE", () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     inMemoryUserRepository = new InMemoryUserRepository();
     authService = new AuthService(inMemoryUserRepository);
   });
@@ -31,4 +31,16 @@ describe("AUTH SERVICE", () => {
 
     expect(valueOf).toEqual(true);
   });
+
+  it("should not be able to authenticate", () =>{
+    const { password } = inMemoryUserRepository.create(
+      getToday().split("/").join("")
+    );
+
+    const token = authService.createToken("15052024");
+
+    const valueOf = authService.validateToken(token, password);
+
+    expect(valueOf).toEqual(false);
+  })
 });

@@ -11,26 +11,13 @@ describe("DELETE EVENT", () => {
     deleteEventService = new DeleteEventService(inMemoryEventsRepository);
   });
   it("should be able to delete an event", async () => {
-    await inMemoryEventsRepository.addEvent({
-      id: 1,
-      description: "descrição do evento 1",
-      title: "Evento 1",
-    });
-    await inMemoryEventsRepository.addEvent({
-      id: 2,
-      description: "descrição do evento 2",
-      title: "Evento 2",
-    });
-    await inMemoryEventsRepository.addEvent({
-      id: 3,
-      description: "descrição do evento 3",
-      title: "Evento 3",
-    });
-    await inMemoryEventsRepository.addEvent({
-      id: 4,
-      description: "descrição do evento 4",
-      title: "Evento 4",
-    });
+    for (let i = 0; i < 4; i++) {
+      await inMemoryEventsRepository.addEvent({
+        id: i + 1,
+        description: `descrição do evento ${i + 1}`,
+        title: `Evento ${i + 1}`,
+      });
+    }
 
     const events = await deleteEventService.execute(2)
 

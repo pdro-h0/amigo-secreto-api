@@ -11,7 +11,6 @@ export class AuthService {
   }
 
   createToken(password: string) {
-    // const currentPassword = getToday().split("/").join("");
     const token = `${env.DEFAULT_TOKEN}${password}`;
     
     return token;
